@@ -12,7 +12,7 @@ import { TokenService } from './../services/token.service';
 })
 export class AuthService {
 
-  private apiUrl = `${environment.API_URL}/api/auth`;
+  private apiUrl = `${environment.API_URL}/auth`;
 
   constructor(
     private http: HttpClient,
