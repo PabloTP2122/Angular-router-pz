@@ -4,6 +4,8 @@ import { ProductsService } from '../../services/products.service';
 
 import { Product } from '../../models/product.model';
 
+import { ActivatedRoute } from '@angular/router';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -14,8 +16,11 @@ export class HomeComponent implements OnInit {
   limit = 10;
   offset = 0;
 
+  productId: string | null = null;
+
   constructor(
-    private productsService: ProductsService
+    private productsService: ProductsService,
+    private route: ActivatedRoute,
   ){
 
   }
@@ -24,6 +29,14 @@ export class HomeComponent implements OnInit {
       this.products = data;
       this.offset += this.limit;
     });
+    // Para vigilar los parámetros URL
+    this.route.queryParamMap.subscribe(
+      params => {
+        this.productId = params.get('product');
+        /* console.log(this.productId); */
+      }
+    )
+
   }
 
   loadMore() {
