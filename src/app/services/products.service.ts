@@ -18,6 +18,15 @@ export class ProductsService {
     private http: HttpClient
   ) { }
 
+  getByCategory(categoryId: string, limit?: number, offset?: number){
+    let params = new HttpParams();
+    if (limit && offset) {
+      params = params.set('limit', limit);
+      params = params.set('offset', limit);
+    }
+    return this.http.get<Product[]>(`${environment.API_URL}/categories/${categoryId}/products`, { params })
+  }
+
   getAll(limit?: number, offset?: number) {
     let params = new HttpParams();
     if (limit && offset) {

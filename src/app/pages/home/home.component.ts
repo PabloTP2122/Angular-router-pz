@@ -25,6 +25,7 @@ export class HomeComponent implements OnInit {
       this.offset += this.limit;
     });
   }
+
   loadMore() {
     this.productsService.getAll(this.limit, this.offset).subscribe((data) => {
       this.products = this.products.concat(data);
