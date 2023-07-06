@@ -20,6 +20,8 @@ import { LayoutComponent } from './components/layout/layout.component';
 
 import { SharedModule } from '../shared/shared.module';
 
+import { QuicklinkModule } from 'ngx-quicklink';
+
 @NgModule({
   declarations: [
     NavComponent,
@@ -37,6 +39,7 @@ import { SharedModule } from '../shared/shared.module';
     WebsiteRoutingModule,
     SwiperModule,
     SharedModule,
+    QuicklinkModule,
   ]
 })
 export class WebsiteModule { }

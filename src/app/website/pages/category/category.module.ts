@@ -6,6 +6,8 @@ import { CategoryComponent } from './category.component';
 
 import { SharedModule } from '../../../shared/shared.module';
 
+import { QuicklinkModule } from 'ngx-quicklink';
+
 @NgModule({
   declarations: [
     CategoryComponent
@@ -13,7 +15,8 @@ import { SharedModule } from '../../../shared/shared.module';
   imports: [
     CommonModule,
     CategoryRoutingModule,
-    SharedModule
+    SharedModule,
+    QuicklinkModule
   ]
 })
 export class CategoryModule { }

@@ -11,6 +11,8 @@ import { TokenInterceptor } from './interceptors/token.interceptor';
 
 import { NotFoundComponent } from './not-found/not-found.component';
 
+import { QuicklinkModule } from 'ngx-quicklink';
+
 
 @NgModule({
   declarations: [
@@ -22,6 +24,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    QuicklinkModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: TimeInterceptor, multi: true },
