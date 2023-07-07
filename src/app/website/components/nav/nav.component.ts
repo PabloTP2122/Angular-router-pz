@@ -8,6 +8,8 @@ import { User } from '../../../models/user.model';
 import { CategoriesService } from '../../../services/categories.service';
 import { Category } from '../../../models/category.model';
 
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-nav',
   templateUrl: './nav.component.html',
@@ -25,15 +27,19 @@ export class NavComponent implements OnInit {
     private storeService: StoreService,
     private authService: AuthService,
     private categoryService: CategoriesService,
+    private router: Router,
   ) { }
 
   ngOnInit(): void {
     this.storeService.myCart$.subscribe(products => {
       this.counter = products.length;
     });
-
     this.getAllCategories();
 
+    this.authService.user$
+    .subscribe(data => {
+      this.profile = data;
+    })
   }
 
   toggleMenu() {
@@ -42,9 +48,15 @@ export class NavComponent implements OnInit {
 
   login() {
     this.authService.loginAndGet('john@mail.com', 'changeme')
-    .subscribe(user => {
-      this.profile = user;
+    .subscribe(() => {
+      this.router.navigate(['/profile']);
     });
+  }
+
+  logout(){
+    this.authService.logOut();
+    this.profile = null;
+    this.router.navigate(['/home']);
   }
 
   getAllCategories(){

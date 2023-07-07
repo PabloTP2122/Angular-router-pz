@@ -6,11 +6,16 @@ import { environment } from './../../environments/environment';
 import { Auth } from './../models/auth.model';
 import { User } from './../models/user.model';
 import { TokenService } from './../services/token.service';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+
+  private user = new BehaviorSubject<User | null>(null);
+
+  user$ = this.user.asObservable();
 
   private apiUrl = `${environment.API_URL}/auth`;
 
@@ -27,7 +32,11 @@ export class AuthService {
   }
 
   getProfile() {
-    return this.http.get<User>(`${this.apiUrl}/profile`);
+    return this.http.get<User>(`${this.apiUrl}/profile`)
+    .pipe(
+      //tap solo realiza una acción
+      tap(user => this.user.next(user))
+    );
   }
 
   loginAndGet(email: string, password: string) {
@@ -35,5 +44,9 @@ export class AuthService {
     .pipe(
       switchMap(() => this.getProfile()),
     )
+  }
+
+  logOut(){
+    this.tokenService.removeToken();
   }
 }
