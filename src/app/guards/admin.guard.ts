@@ -1,43 +1,34 @@
 import { Injectable } from '@angular/core';
-//Para redirect
-import { Router } from '@angular/router';
-
-import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, UrlTree } from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable, map } from 'rxjs';
 
-
+// Para conocer el estado
 import { AuthService } from '../services/auth.service';
+import { TokenService } from '../services/token.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuard implements CanActivate {
-
+export class AdminGuard implements CanActivate {
   constructor(
     private authService: AuthService,
+    private tokenService: TokenService,
     private router: Router
-  ){
-
-  }
+  ){}
 
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    /* const token = this.tokenService.getToken();
-    if (!token){
-      //this.router.navigateByUrl('home');
-      this.router.navigate(['home']);
-      return false
-    }
-    return token ? true : false; */
     return this.authService.user$
     .pipe(
       map(user => {
-        if(!user){
-          this.router.navigate(['home']);
+        if(user?.role === 'admin'){
+          return true;
+        }else{
+          this.router.navigate(['/home'])
           return false;
         }
-        return true;
+
       })
     )
   }

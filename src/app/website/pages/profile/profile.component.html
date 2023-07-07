@@ -3,4 +3,5 @@
     <p>Nombre {{ user.name }}</p>
     <p>Email {{ user.email }}</p>
     <p>Rol {{ user.role }}</p>
+    <button routerLink="/cms" *ngIf="user.role==='admin'">CMS</button>
 </div>

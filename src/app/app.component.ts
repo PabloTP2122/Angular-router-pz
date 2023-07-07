@@ -25,7 +25,7 @@ export class AppComponent implements OnInit{
   ngOnInit(): void {
     //Verificar si hay un token
     const token = this.tokenService.getToken();
-    // Si existe un token deja al usuario en el estao global
+    // Si existe un token deja al usuario en el estado global
     // Al que puede acceder toda la aplicación gracias a la reactividad.
     if(token){
       this.authService.getProfile()

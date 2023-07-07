@@ -11,11 +11,6 @@ const routes: Routes = [
     component: LayoutComponent,
     children: [
       {
-        path:'',
-        redirectTo: 'grid',
-        pathMatch: 'full'
-      },
-      {
         path: 'grid',
         component: GridComponent
       },
