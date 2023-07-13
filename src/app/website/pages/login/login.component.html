@@ -1,1 +1,147 @@
-<p>login works!</p>
+<p style="margin: 2rem;">
+  Name:
+  <input
+    [class.is-valid]="isNameFieldValid"
+    [class.is-invalid]="isNameFieldInValid"
+    type="text"
+    [formControl]="nameField"
+  />
+  {{ nameField.value }}
+</p>
+<div class="messages" [class.active]="isNameFieldInValid">
+  <p style="margin: 2rem;">
+    <strong
+      style="color: red;"
+      *ngIf="nameField.touched && nameField.hasError('required')"
+      >Este campo es requerido
+    </strong>
+  </p>
+  <p style="margin: 2rem;">
+    <strong
+      style="color: red;"
+      *ngIf="nameField.touched && nameField.hasError('maxlength')"
+      >Este campo es no debe tener más de 10 caracteres
+    </strong>
+  </p>
+</div>
+<button
+  [disabled]="nameField.invalid"
+  style="margin: 2rem;"
+  (click)="getNameValue()"
+>
+  Get value
+</button>
+
+<p style="margin: 2rem;">
+  Email: <input type="email" [formControl]="emailField" />
+</p>
+
+<p style="margin: 2rem;">Tel: <input type="tel" [formControl]="telField" /></p>
+
+<p style="margin: 2rem;">
+  Color: <input type="color" [formControl]="colorField" />
+</p>
+
+<p style="margin: 2rem;">
+  Date: <input type="date" [formControl]="dateField" />
+</p>
+
+<p style="margin: 2rem;">
+  Week: <input type="week" [formControl]="weekField" />
+</p>
+
+<p style="margin: 2rem;">
+  Number: <input type="number" [formControl]="ageField" />
+</p>
+
+<p style="margin: 2rem;">
+  Rango: <input type="range" [formControl]="rangeField" />
+</p>
+
+<p style="margin: 2rem;">
+  Categories:
+  <select [formControl]="categoryForm">
+    <option value="category-1">Category 1</option>
+    <option value="category-2">Category 2</option>
+    <option value="category-3">Category 3</option>
+    <option value="category-4">Category 4</option>
+  </select>
+</p>
+
+<p style="margin: 2rem;">
+  {{ tagsForm.value }} Tags:
+  <select [formControl]="tagsForm" multiple>
+    <option value="tag-1">Tag 1</option>
+    <option value="tag-2">Tag 2</option>
+    <option value="tag-3">Tag 3</option>
+    <option value="tag-4">Tag 4</option>
+  </select>
+</p>
+
+<p style="margin: 2rem;">
+  {{ agreeField.value }} Checkbox:
+  <input type="checkbox" [formControl]="agreeField" />
+</p>
+<p style="margin: 2rem;">
+  Gender: {{ genderField.value }}
+  <label>
+    Male:<input
+      name="gender"
+      type="radio"
+      value="male"
+      [formControl]="genderField"
+    />
+  </label>
+  <label>
+    Female:<input
+      name="gender"
+      type="radio"
+      value="female"
+      [formControl]="genderField"
+    />
+  </label>
+  <label>
+    other:<input
+      name="gender"
+      type="radio"
+      value="other"
+      [formControl]="genderField"
+    />
+  </label>
+</p>
+
+<p style="margin: 2rem;">
+  Gender: {{ zoneField.value }}
+  <label>
+    Zone 1:<input
+      name="zone"
+      type="radio"
+      value="zone-1"
+      [formControl]="zoneField"
+    />
+  </label>
+  <label>
+    Zone 2:<input
+      name="zone"
+      type="radio"
+      value="zone-2"
+      [formControl]="zoneField"
+    />
+  </label>
+  <label>
+    Zone 3:<input
+      name="zone"
+      type="radio"
+      value="zone-3"
+      [formControl]="zoneField"
+    />
+  </label>
+</p>
+
+<p style="width: 400px; margin: 2rem;">
+  <!-- <code>
+     <pre>
+      {{ nameField | json }}
+     </pre>
+    </code> -->
+</p>

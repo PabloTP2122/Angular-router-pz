@@ -22,6 +22,9 @@ import { SharedModule } from '../shared/shared.module';
 
 import { QuicklinkModule } from 'ngx-quicklink';
 
+//Forms
+import { ReactiveFormsModule } from '@angular/forms';
+
 @NgModule({
   declarations: [
     NavComponent,
@@ -40,6 +43,7 @@ import { QuicklinkModule } from 'ngx-quicklink';
     SwiperModule,
     SharedModule,
     QuicklinkModule,
+    ReactiveFormsModule
   ]
 })
 export class WebsiteModule { }
